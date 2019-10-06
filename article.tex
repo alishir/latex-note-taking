@@ -1,11 +1,29 @@
 \documentclass{article}
 \usepackage{pdfpages}
-\usepackage[paperwidth=12in,paperheight=12in]{geometry}
+\usepackage[margin=10pt,paperwidth=12in,paperheight=12in]{geometry}
+\usepackage[many]{tcolorbox}
 \usepackage{xepersian}
 \settextfont{Noto Naskh Arabic}
 \setlatintextfont{Noto Sans}
 \begin{document}
 
-\includepdf[pages=-,offset=150 0,frame=true,fitpaper=false]{page6_7.pdf}
+\newcommand{\note}[1]{
+  \begin{tcolorbox}[width=0.3\linewidth]
+    \begin{RTL}
+      #1
+    \end{RTL}
+  \end{tcolorbox}
+}
+
+\includepdf[pages=1,offset=150 0,frame=true,fitpaper=false,pagecommand={
+    \vspace*{5cm}
+    \begin{tcolorbox}[width=0.3\linewidth]
+      \begin{RTL}
+        علم العربیة: مضاف و مضاف الیه است و در واقع علم اللغة العربیة بوده و موصوف که اللغة بوده حذف شده است. 
+        گاهی اوقات موصوف را در لغت نمی‌آورند.
+      \end{RTL}
+    \end{tcolorbox}
+}]{page6_7.pdf}
+
 
 \end{document}
