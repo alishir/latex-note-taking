@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{pdfpages}
+\usepackage{environ}
 \usepackage[margin=10pt,paperwidth=12in,paperheight=12in]{geometry}
 \usepackage[many]{tcolorbox}
 \usepackage{xepersian}
@@ -7,23 +8,48 @@
 \setlatintextfont{Noto Sans}
 \begin{document}
 
-\newcommand{\note}[1]{
-  \begin{tcolorbox}[width=0.3\linewidth]
-    \begin{RTL}
-      #1
-    \end{RTL}
-  \end{tcolorbox}
+\newenvironment{note}
+               {
+                 \begin{tcolorbox}[width=0.3\linewidth]
+                 \begin{RTL}
+               }
+               {
+                 \end{RTL}
+                 \end{tcolorbox}
+               }
+              
+\NewEnviron{addpage}[1]{
+  \includepdf[pages=#1,offset=150 0,frame=true,fitpaper=false,pagecommand={
+      \BODY
+  }]{book.pdf}
 }
 
+
 \includepdf[pages=1,offset=150 0,frame=true,fitpaper=false,pagecommand={
-    \vspace*{5cm}
-    \begin{tcolorbox}[width=0.3\linewidth]
-      \begin{RTL}
+    \vspace*{6cm}
+    \begin{note}
         علم العربیة: مضاف و مضاف الیه است و در واقع علم اللغة العربیة بوده و موصوف که اللغة بوده حذف شده است. 
         گاهی اوقات موصوف را در لغت نمی‌آورند.
-      \end{RTL}
-    \end{tcolorbox}
-}]{page6_7.pdf}
+    \end{note}
+    \begin{note}
+      صناعة: دانش و فن.
+      صوغ: ریختن، اسم فاعل آن صائغ است به معنای ریخته‌گر و اسم مفعول آن مصوغ به معنای ریخته شده.
+    \end{note}
+    \begin{note}
+      خبر «انّ» بر آن مقدم نمی‌شود ولی خبر «کان» مقدم می‌شود.
+    \end{note}
+    \vspace*{4cm}
+    \begin{note}
+      نظرات دیگر مانند ۲۸ حرف و ۳۰ حرف هم برای تعداد حروف الفبا وجود دارد.
+      \end{note}
+}]{book.pdf}
+
+\begin{addpage}{2}
+    \vspace*{3cm}
+    \begin{note}
+      نظرات دیگر مانند ۲۸ حرف و ۳۰ حرف هم برای تعداد حروف الفبا وجود دارد.
+     \end{note}
+\end{addpage}
 
 
 \end{document}
